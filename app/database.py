@@ -11,6 +11,8 @@ db = Database()
 async def connect_to_mongo():
     db.client = AsyncIOMotorClient(settings.mongo_url)  # Use the URL from the config
     db.database = db.client["my_database"]  # Replace with your database name
+    print("Database connection established.")
+
 
 # Close the MongoDB connection
 async def close_mongo_connection():
