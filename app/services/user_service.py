@@ -27,6 +27,7 @@ async def get_all_users():
             user["id"] = str(user["_id"])
             del user["_id"]
             users.append(user)
+        print("Users retrieved:", users)
         return users
     except Exception as e:
         # Optionally, log the exception
