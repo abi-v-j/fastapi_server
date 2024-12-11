@@ -18,18 +18,28 @@ async def get_user_by_id(user_id: str):
     except Exception:
         return None
     
-    
 async def get_all_users():
+    """
+    Fetch all users from the 'users' collection in the database.
+    Converts MongoDB ObjectId to string for the id field.
+    """
     try:
-        # Fetch all users using find()
+        # Ensure the database connection is initialized
+        if not db.database:
+            raise Exception("Database connection is not initialized.")
+
+        # Fetch all users from the collection
         users = []
-        async for user in db.database.users.find():
+        async for user in db.database["users"].find():
+            # Transform ObjectId to string for the id field
             user["id"] = str(user["_id"])
-            del user["_id"]
+            user.pop("_id", None)  # Safely remove the '_id' field
             users.append(user)
+
+        # Print retrieved users for debugging (optional)
         print("Users retrieved:", users)
         return users
     except Exception as e:
-        # Optionally, log the exception
+        # Log the exception and re-raise it if needed
         print(f"Error retrieving users: {e}")
-        return None
+        raise HTTPException(status_code=500, detail="Internal server error")
