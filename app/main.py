@@ -5,7 +5,7 @@ from app.database import connect_to_mongo, close_mongo_connection
 app = FastAPI()
 
 # Include routes
-app.include_router(user_routes.router, prefix="/api/v1/users/", tags=["Users"])
+app.include_router(user_routes.router, prefix="/api/v1/users", tags=["Users"])
 
 # Connect to MongoDB on app startup
 @app.on_event("startup")
