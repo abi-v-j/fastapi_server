@@ -1,6 +1,7 @@
 from app.routes import user_routes  # Import user routes
 from fastapi import FastAPI
 from app.database import connect_to_mongo, close_mongo_connection
+from mangum import Mangum  # For AWS Lambda/ASGI compatibility with Vercel
 
 app = FastAPI()
 
@@ -20,3 +21,6 @@ async def shutdown_db():
 @app.get("/")
 async def root():
     return {"message": "Welcome to FastAPI!"}
+
+
+handler = Mangum(app)

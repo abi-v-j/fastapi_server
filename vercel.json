@@ -1,18 +1,14 @@
 {
-    "builds": [
-      {
-        "src": "app/main.py",
-        "use": "@vercel/python",
-        "config": { "includeFiles": ["dist/**"] }
-
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "app/main.py",
-        "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
-
-      }
-    ]
-  }
+  "builds": [
+    {
+      "src": "app/main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app/main.py"
+    }
+  ]
+}
