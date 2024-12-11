@@ -10,6 +10,7 @@ app.include_router(user_routes.router, prefix="/api/v1/users", tags=["Users"])
 # Connect to MongoDB on app startup
 @app.on_event("startup")
 async def startup_db():
+    print("hello")
     await connect_to_mongo()
 
 # Close MongoDB connection on app shutdown
