@@ -20,6 +20,7 @@ async def get_user_api(user_id: str):
 @router.get("/",  response_model=List[UserResponse])
 async def get_user_api():
     user = await get_all_users()
+    print(user)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user
